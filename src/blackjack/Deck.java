@@ -9,8 +9,7 @@ package blackjack;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Deck
-{
+public class Deck {
 	public static final int NUMFACES = 13;
 	public static final int NUMSUITS = 4;
 	public static final int NUMCARDS = 52;
@@ -18,44 +17,35 @@ public class Deck
 	public static final String SUITS[] = {"CLUBS","SPADES","DIAMONDS","HEARTS"};
 
 	private int topCardIndex;
-	private ArrayList<Card> stackOfCards;
+	private ArrayList<Card> stackOfCards = new ArrayList<Card>();
 
-	public Deck ()
-	{
-		//initialize data - stackOfCards - topCardIndex
-		
-		
-		//loop through suits
-			//loop through faces
-				//add in a new card
-		
+	public Deck () {
+		topCardIndex = NUMCARDS - 1;
+                for (int i = 0; i < NUMSUITS; i++){
+                    for (int j = 1; j <= NUMFACES; j++){
+                        stackOfCards.add(new BlackJackCard(j, SUITS[i]));
+                    }
+                }	
+	}
+        
+        public void shuffle () {
+                topCardIndex = NUMCARDS - 1;
+                Collections.shuffle(stackOfCards);
 	}
 
-	//modifiers
-   public void shuffle ()
-	{
-		//shuffle the deck
-		//reset variables as needed
+	public int  size () {
+                return stackOfCards.size();
 	}
 
-   //accessors
-	public int  size ()
-	{
-		return 0;
+	public int numCardsLeft() {
+		return topCardIndex + 1;
 	}
 
-	public int numCardsLeft()
-	{
-		return 0;
-	}
-
-	public Card nextCard()
-	{
+	public Card nextCard() {
 		return stackOfCards.get(topCardIndex--);
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		return stackOfCards + "   topCardIndex = " + topCardIndex;
 	} 
 }
