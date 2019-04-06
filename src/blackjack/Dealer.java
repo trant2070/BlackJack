@@ -7,34 +7,29 @@ package blackjack;
 //Lab  - 
 
 
-//define Dealer class here
-	
-	
-	
-	
-	//instance variable - Deck 
+import java.util.ArrayList;
 
-
-
-
-
-	//constructors
-
-
-
-
-
-	//method to shuffle
-
-
-
-
-
-
-	//method to deal a card
-
-
-
-
-
-	//hit method goes here
+public class Dealer extends AbstractPlayer {
+    
+    Deck deck = new Deck();
+    
+    public Dealer() {
+        super();
+    }
+    
+    public Dealer(ArrayList<Card> h, int w) {
+        super(h, w);
+    }
+    
+    public void shuffle() {
+        deck.shuffle();
+    }
+    
+    public Card deal() {
+        return deck.nextCard();
+    }
+    
+    public boolean hit() {
+        return super.getHandValue() < 17;
+    }
+}
